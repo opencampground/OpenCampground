@@ -1,0 +1,31 @@
+<div class="oc_form">
+
+  <% form_for(@user) do |f| %>
+    <%= f.error_messages %>
+
+    <fieldset>
+      <legend><%= I18n.t('user.Details') %></legend>
+      <div>
+	<%= f.label I18n.t('user.Name') %>:
+	<%= f.text_field :name, {:size => 40, :autocomplete => 'off'} %>
+      </div>
+      <div>
+	<%= f.label I18n.t('user.Admin') %>:
+	<%= f.check_box :admin %>
+      </div>
+      <div>
+	<%= f.label :user_password, I18n.t('user.Password') %>:
+	<%= f.password_field :password, :size => 40 %>
+      </div>
+      <div>
+	<%= f.label :user_password_confirmation, I18n.t('user.Confirm') %>:
+	<%= f.password_field :password_confirmation, :size => 40 %>
+      </div>
+      <div>
+	<%= f.submit I18n.t('user.AddUser'), :class => "submit" %>
+      </div>
+    </fieldset>
+  <% end %>
+  <%= link_to I18n.t('user.Cancel'), new_setup_camper_url %>
+</div>
+

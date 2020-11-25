@@ -1,0 +1,36 @@
+<%= render :partial => '/maintenance/buttons' %>
+
+<% form_tag :action => :show, :method => :get  do %>
+  <label for="id"><b><%= I18n.t('reservation.ReservationNumber') %>:</b></label>
+  <%= text_field_tag :id, params[:id], :size => '4', :autocomplete => "off" %>
+  <%= submit_tag I18n.t('reservation.FindbyReservationNumber') %>
+<% end %>
+
+<table cellpadding="5" cellspacing="0" border="2">
+  <tr>
+    <th><%= I18n.t('reservation.Reservation') %></th>
+    <th><%= I18n.t('payment.Date') %></th>
+    <th><%= I18n.t('payment.Type') %></th>
+    <th><%= I18n.t('payment.Number') %></th>
+    <th><%= I18n.t('payment.Expire') %></th>
+    <th><%= I18n.t('payment.Amount') %></th>
+    <th><%= I18n.t('payment.Memo') %></th>
+    <th><%= I18n.t('payment.Created') %></th>
+    <th><%= I18n.t('payment.Updated') %></th>
+  </tr>
+  <% @payments.each do |payment| %>
+    <tr>
+      <td align="right"><%= payment.reservation_id %></td>
+      <td align="right"><%= I18n.l payment.pmt_date %></td>
+      <td align="right"><%= payment.creditcard.name if payment.creditcard_id %></td>
+      <td align="right"><%= payment.credit_card_no_obscured %></td>
+      <td align="right"><%= payment.cc_expire.strftime("%m/%y") if payment.cc_expire %></td>
+      <td align="right"><%= number_to_currency(payment.amount) %></td>
+      <td><%= payment.memo %></td>
+      <td><%= payment.created_at %></td>
+      <td><%= payment.updated_at %></td>
+      <td><%= link_to I18n.t('general.Edit'), edit_payment_path(payment) %></td>
+      <td><%= link_to I18n.t('general.Destroy'), payment_path(payment), :confirm => confirm_text(payment.id), :method => :delete %></td>
+    </tr>
+  <% end %>
+</table>

@@ -1,0 +1,7 @@
+<% form_tag :action => 'update', :id => @recommender do %>
+  <%= render :partial => 'form' %>
+  <p>
+  <%= submit_tag 'Save' %>
+  </p>
+<% end %>
+<%= button_to 'Cancel', :action => 'list' %>

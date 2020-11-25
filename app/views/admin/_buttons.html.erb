@@ -1,0 +1,40 @@
+<div>
+<table>
+  <tr>
+    <% if(authorized?(@option.all_manage_backup?)|| authorized?(@option.all_manage_logs?) || authorized?(@option.all_manage_payments?) || authorized?(@option.all_manage_measured?)||authorized?(@option.all_troubleshoot?))%>
+      <td>
+	<%= link_to 'Maintenance', maintenance_index_path, :class => "link_btn" %>
+      </td>
+    <% end %>
+    <% if (@option.use_login? && @user_login.admin?) || !@option.use_login? %>
+      <td>
+	<%= link_to 'Setup', {:controller => 'setup/index', :action => 'index'}, :class => "link_btn" %>
+      </td>
+    <% end %>
+    <% if authorized? @option.all_archives? %>
+      <td>
+	<%= link_to 'Archives', {:controller => '/archive', :action => 'list'}, :class => "link_btn" %>
+      </td>
+    <% end %>
+    <% if @option.use_login? && @user_login.admin? %>
+      <td>
+	  <%= link_to 'User Maintenance', users_path, :class => "link_btn" %>
+      </td>
+    <% end %>
+      <td>
+	<%= link_to 'License', admin_license_index_path, :class => "link_btn" %>
+      </td>
+      <td>
+	<%= link_to 'User Manual', admin_user_manual_index_path, :class => "link_btn" %>
+      </td>
+      <td>
+	<%= link_to 'About', admin_about_index_path, :class => "link_btn" %>
+      </td>
+    <% if authorized?(@option.all_updates?) && @option.use_update? && Rails.env.production? %>
+      <td>
+	<%= link_to 'Updates', {:controller => :version, :action => 'index'}, :class => "link_btn" %>
+      </td>
+    <% end %>
+  </tr>
+</table>
+</div>

@@ -1,0 +1,14 @@
+<% if @success %>
+  <% form_tag :action => :install_files do %>
+    <% if defined?(@maintenance) %>
+      <input type="hidden" name="maintenance" value="<%= @maintenance -%>" />
+    <% else %>
+      <input type="hidden" name="revision" value="<%= @revision -%>" />
+    <% end %>
+    <p>
+    <%= submit_tag I18n.t('update.Install') %>
+  <% end %>
+<% else %>
+  <%= button_to I18n.t('update.Retry'), :controller => :version, :action => :get_files %>
+<% end %>
+<%= button_to I18n.t('update.Skip'), :controller => :admin, :action => :index %>

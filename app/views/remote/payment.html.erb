@@ -1,0 +1,21 @@
+<div id="explain">
+  <%= @prompt.body %>
+</div>
+<div id="payment" class="cc-form">
+  <div class="cc-form">
+  Amount to be charged: <%= "#{number_2_currency(@deposit['amount'] + @deposit['tax'])} for #{@deposit['custom']}" %>
+  </div>
+  <%  case @gateway
+      when 'PayPal', 'PayPal_r' %>
+     <%= render :partial => 'paypal_transactions/remote' %>
+   <% when 'CardConnect','CardConnect_r' %>
+     <%= render :partial => 'card_transactions/remote_token' %>
+   <% end %>
+  <div class="flex_container">
+    <% if @option.allow_gateway? %>
+      <%= button_to "Finish reservation", {:action => :confirm_without_payment }, {:class => 'flex_item', :class => 'payment_submit'} %>
+    <% end %>
+    <%= button_to  I18n.t('reservation.Cancel'), {:action => :abandon_remote }, 
+						 {:confirm => I18n.t('remote.Cancel'), :method => "post", :class => 'flex_item', :class => 'payment_submit', :id => 'rescanx'} %>
+  </div>
+</div>

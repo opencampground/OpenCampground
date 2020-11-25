@@ -1,0 +1,6 @@
+<% form_tag :action => 'update', :id => @country do %>
+  <%= render :partial => 'form' %>
+  <%= submit_tag 'Save' %>
+<% end %>
+
+<%= button_to 'Cancel', :action => 'list' %>

@@ -1,0 +1,58 @@
+<%= render :partial => 'setup/shared/buttons' %>
+<% form_tag :action => 'update' do %>
+  <h2>
+    Remote Reservation Options:
+  </h2>
+  <label for="option_home">Return to URL when remote reservation finished:</label>
+  <%= text_field :option, :home %>
+  <% if @option.require_paypal? || @option.allow_paypal? %>
+
+    <h2>
+      PayPal Configuration:
+    </h2>
+    <table>
+      <tr>
+	<td>
+	  PayPal business name:
+	</td>
+	<td>
+	  <b><%= text_field :option, :paypal_business %></b><br />
+	</td>
+      </tr>
+      <tr>
+	<td>
+	  PayPal certificate ID:
+	</td>
+	<td>
+	  <b><%= text_field :option, :paypal_cert_id %></b><br />
+	</td>
+      </tr>
+      <tr>
+	<td>
+	  PayPal URL:
+	</td>
+	<td>
+	  <b><%= text_field :option, :paypal_url %></b><br />
+	</td>
+      </tr>
+      <tr>
+	<td>
+	  PayPal currency code: 
+	</td>
+	<td>
+	  <b><%= text_field :option, :paypal_currency_code %></b><br />
+	</td>
+      </tr>
+      <tr>
+	<td>
+	  PayPal country code:
+	</td>
+	<td>
+	  <b><%= text_field :option, :paypal_country %></b><br />
+	</td>
+      </tr>
+    </table>
+  <% end %>
+  <%= submit_tag 'Save Changes' %>
+<% end %>
+<%= button_to 'Cancel Changes', :action => :list %>

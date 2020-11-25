@@ -1,0 +1,15 @@
+<% if @success %>
+  <% form_tag :action => :get_files do %>
+    <b><%= I18n.t('update.Desc') %> </b><br /><%= @desc %>
+    <% if defined?(@maintenance) %>
+      <input type="hidden" name="maintenance" value="<%= @maintenance -%>" />
+    <% else %>
+      <input type="hidden" name="revision" value="<%= @revision -%>" />
+    <% end %>
+    <p>
+    <%= submit_tag I18n.t('update.Fetch') %>
+  <% end %>
+<% else %>
+  <%= button_to I18n.t('update.Retry'), :controller => :version, :action => :index %>
+<% end %>
+<%= button_to I18n.t('update.Skip'), :controller => :admin, :action => :index %>

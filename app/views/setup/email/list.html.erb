@@ -1,0 +1,65 @@
+<%= render :partial => 'setup/shared/buttons' %>
+<div>
+<h2>
+SMTP Configuration
+</h2>
+<table>
+  <tr>
+    <td> SMTP server address: <b><%= @email.smtp_address %></b> </td>
+    <td> SMTP domain: <b><%= @email.smtp_domain %></b> </td>
+  </tr>
+  <tr>
+    <td> SMTP authentication method: <b><%= @email.smtp_authentication.name %></b> </td>
+    <td> SMTP port number: <b><%= @email.smtp_port %></b> </td>
+  </tr>
+  <tr>
+    <td> SMTP user name: <b><%= @email.smtp_username %></b> </td>
+    <td> SMTP password: <b><%=  @email.smtp_password %></b> </td>
+  </tr>
+</table>
+<hr/>
+<h2>
+Mail Configuration
+</h2>
+<table>
+  <tr>
+    <td>Subject for Reservation Confirmation email:<b><%=  @email.confirm_subject %></b></td>
+    <td>Mail sender element:<b><%=  @email.sender %></b></td>
+  </tr>
+  <tr>
+    <td>Subject for Reservation Update email:<b><%=  @email.update_subject %></b></td>
+    <td>Mail reply_to address:<b><%=  @email.reply %></b></td>
+  </tr>
+  <% if @option.use_feedback? %>
+    <tr>
+      <td>Subject for Reservation Feedback email:<b><%=  @email.feedback_subject %></b></td>
+    </tr>
+  <% end %>
+  <% if @option.use_remote_reservations? %>
+    <tr>
+      <td>Subject for Remote Reservation Received email:<b><%= @email.remote_res_subject %></b></td>
+    </tr>
+    <tr>
+      <td>Subject for Remote Reservation Confirmed email:<b><%= @email.remote_res_confirm_subject %></b></td>
+    </tr>
+    <tr>
+      <td>Subject for Remote Reservation Rejected email:<b><%= @email.remote_res_reject_subject %></b></td>
+    </tr>
+  <% end %>
+  <tr>
+    <td>Mail cc address:<b><%=  @email.cc %></b></td>
+    <td>Mail bcc address:<b><%=  @email.bcc %></b></td>
+  </tr>
+</table>
+</div>
+<table>
+<tr>
+<td>
+<%= button_to 'Edit', :action => :edit %>
+</td><td>
+<%= button_to 'Finished', :controller => 'setup/index' %>
+</td><td>
+<%= button_to 'Test current configuration', :action => :send_test %>
+</td>
+</tr>
+</table>

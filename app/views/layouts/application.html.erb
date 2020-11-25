@@ -1,0 +1,27 @@
+<% if @option.css.blank? %>
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<head>
+  <%= render :partial => 'layouts/head' %>
+</head>
+<body>
+  <%= render :partial => 'layouts/banner' %>
+  <% if @option.tabs? %>
+    <%= render :partial => 'layouts/tabs' %>
+  <% else %>
+    <%= render :partial => 'layouts/columns' %>
+  <% end %>
+  <%= render :partial => 'layouts/flash', :object => flash %>
+  <%= @content_for_layout %>
+  </div>
+  <% unless @use_navigation %>
+  </div>
+  <% end %>
+</body>
+</html>
+<% else %>
+  <%= ERB.new(@option.css).result(binding) %>
+<% end %>

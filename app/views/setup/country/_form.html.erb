@@ -1,0 +1,11 @@
+<%= error_messages_for 'country' %>
+
+<!--[form:country]-->
+<p><label for="country_name">Country name</label><br/>
+<%= text_field 'country', 'name'  %></p>
+<% unless controller.action_name == 'new' %>
+  <p><label for="country_active">Active?</label>
+  <%= check_box :country, :active  %></p>
+<% end %>
+<!--[eoform:country]-->
+

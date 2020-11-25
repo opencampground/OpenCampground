@@ -1,0 +1,63 @@
+<table cellpadding="5" cellspacing="0">
+  <tr>
+    <th>Select</th>
+    <th><%= button_to 'Res #', :action => :sort_by_res %></th>
+    <th><%= button_to 'Name', :action => :sort_by_name %></th>
+    <th>Address</th>
+    <th>City</th>
+    <th>State</th>
+    <% if @option.use_country? && Country.active.count > 0 %>
+      <th>Country</th>
+    <% end %>
+    <th>Zip</th>
+    <th><%= button_to 'Start date', :action => :sort_by_start %></th>
+    <th><%= button_to 'End date', :action => :sort_by_end %></th>
+    <th><%= button_to 'Space', :action => :sort_by_space %></th>
+    <th><%= Reason %></th>
+  </tr>
+  
+<% for a in @archives %>
+  <tr>
+  <td><input type="checkbox" id="<%="a_#{a.id}"%>" <%= a.selected ? 'checked="no"' : '' %>
+                           value=<%="#{!a.selected}"%>
+                           onclick="<%= remote_function(
+			     :url => {:action => 'update_sel', :archive_id => "#{a.id}" }) %>" />
+
+  <td><%= a.reservation_id.to_s %></td>
+  <td><%= a.name %></td>
+  <td><%= a.address %></td>
+  <td><%= a.city %></td>
+  <td align=center><%= a.state %></td>
+  <% if @option.use_country? && Country.active.count > 0 %>
+    <td align=center><%= a.country if a.country? %></td>
+  <% end %>
+  <td><%= a.mail_code %></td>
+  <td><%= I18n.l(a.startdate) %></td>
+  <td><%= I18n.l(a.enddate) %></td>
+  <td align=center><%= a.space_name %></td>
+  <td align=left><%= a.last_log_reason %></td>
+    <td><%= link_to 'Show', :controller => 'archive', :action => 'show', :archive_id => a %></td>
+    <% if a.reservation_available? %>
+      <td><%= link_to 'Edit', :controller => 'reservation', :action => 'show', :reservation_id => a.reservation_id %></td>
+    <% end %>
+  </tr>
+<% end %>
+</table>
+
+<%= will_paginate @archives %>
+<table>
+<tr>
+<td>
+<%= button_to "Select all", :action => :select_all %>
+</td>
+<td>
+<%= button_to "Clear all", :action => :clear_all %>
+</td>
+<td>
+<%= button_to "Download selected", :action => :download_selected %>
+</td>
+<td>
+<%= button_to "Delete selected", :action => :delete_selected %>
+</td>
+</tr>
+</table>

@@ -1,0 +1,31 @@
+<%= render :partial => 'setup/shared/buttons' %>
+  <h2>
+    Security Settings:
+  </h2>
+  <p>
+  These two values are used to uniquely secure your system.  If you do not enter values, a value that is hard coded in
+  the Open Campground code will be used.
+  This will have no impact if you do not operate on the Internet but if your system is connected to the Internet you should set
+  these values to more closely secure your system.
+  Each value must be set to a series of 40 or more characters.
+  You should avoid words and are encouraged to use a mix of letters and numbers.
+  </p>
+  <% if @os == 'Linux' %>
+  The values can be generated automaticly for a Linux based server.
+    <%= button_to 'Generate Tokens', :action => :generate %>
+  <% else %>
+
+<% form_tag :action => 'update', :id => @option do %>
+  <%= error_messages_for('option')  %>
+  <label for="option_cookie_token">Value to use for cookie token:</label>
+  <%= text_field :option,
+		 :cookie_token,
+		 {:size => '42', :autocomplete => 'off', :style => "font-family: monospace"} %><br />
+  <label for="option_session_token">Value to use for session token:</label>
+  <%= text_field :option,
+		 :session_token,
+		 {:size => '42', :autocomplete => 'off', :style => "font-family: monospace"} %><br />
+  <%= submit_tag 'Save Changes' %>
+<% end %>
+  <% end %>
+<%= button_to 'Cancel Changes', :action => :list %>

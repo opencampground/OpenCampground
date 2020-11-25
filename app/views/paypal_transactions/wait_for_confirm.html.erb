@@ -1,0 +1,11 @@
+<meta http-equiv="refresh" content="5" />
+<% if @remote %>
+  <div id="explain">
+    <%= @prompt.body %>
+  </div>
+<% end %>
+<div id="action">
+<p>
+<%= I18n.t('remote.WaitingConfirm') %>
+</p>
+</div>

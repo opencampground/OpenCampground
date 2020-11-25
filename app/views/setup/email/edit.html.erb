@@ -1,0 +1,42 @@
+<%= render :partial => 'setup/shared/buttons' %>
+<% form_tag :action => 'update' do %>
+<div>
+<h2>
+SMTP Configuration
+</h2>
+<table>
+  <tr>
+    <td> SMTP server address: </td> <td> <b><%= text_field :email, :smtp_address %></b> </td>
+    <td> SMTP domain: </td> <td> <b><%= text_field :email, :smtp_domain %></b> </td>
+  </tr>
+  <tr>
+    <td> SMTP authentication method: </td> <td> <%= collection_select( :email, :smtp_authentication_id, SmtpAuthentication.all, :id, :name) %> </td>
+    <td> SMTP port number: </td> <td> <b><%= text_field :email, :smtp_port %></b> </td>
+  </tr>
+  <tr>
+    <td> SMTP user name: </td> <td> <b><%= text_field :email, :smtp_username %></b> </td>
+    <td> SMTP password: </td> <td> <b><%= text_field :email, :smtp_password %></b> </td>
+  </tr>
+</table>
+<hr/>
+<h2>
+Mail Configuration
+</h2>
+<table>
+  <tr>
+    <td>Mail sender element:</td><td> <b><%= text_field :email, :sender %></b></td>
+    <td>Mail reply_to address:</td><td> <b><%= text_field :email, :reply %></b></td>
+  </tr>
+  <tr>
+    <td>Mail cc address:</td><td> <b><%= text_field :email, :cc %></b></td>
+    <td>Mail bcc address:</td><td> <b><%= text_field :email, :bcc %></b></td>
+  </tr>
+</table>
+<%= submit_tag 'Save Changes' %>
+</div>
+<% end %>
+<table><tr><td>
+<%= button_to 'Test current configuration', :action => 'send_test' %>
+</td><td>
+<%= button_to 'Cancel Changes', :action => :list %>
+</td></tr></table>

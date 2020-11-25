@@ -1,0 +1,6 @@
+<%= render :partial => 'setup/shared/buttons' %>
+<% form_tag :action => 'update', :id => @mail_template do %>
+Local html 
+<%= submit_tag 'Save' %>
+<% end %>
+<%= button_to 'Cancel', :action => 'list' %>

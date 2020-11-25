@@ -1,0 +1,15 @@
+<style>
+#spaces li { list-style: none; }
+</style>
+<%= render :partial => 'setup/shared/buttons' %>
+<p>
+<%= button_to 'Finished', :action => 'list' %>
+<div id="container" style="overflow: scroll; height: <%= (@option.disp_rows*2).to_s %>em">
+ <ul id="spaces"> 
+  <% @spaces.each do |s| %>
+      <li id="space_<%=s.id%>"><%= s.name %></li>
+  <% end %>
+</ul>
+</p>
+<%= javascript_tag "Position.includeScrollOffsets = true" %>
+<%= sortable_element :spaces, :scroll => "'container'", :url => {:action => 'resort'} %>

@@ -1,0 +1,39 @@
+<div class="oc_form">
+
+<% form_for(@user) do |f| %>
+  <%= f.error_messages %>
+
+    <fieldset>
+      <legend><%= I18n.t('user.NewPasswd')%></legend>
+      <div>
+	<%= f.label I18n.t('user.Name') %>:&nbsp;
+	<span style="font-size: large">
+	  <% if @user_login.admin? %>
+	    <%= f.text_field :name %>
+	  <% else %>
+	    <%= @user.name %>
+	  <% end %>
+	</span>
+      </div>
+      <% if @user_login.admin? %>
+        <div>
+	  <%= f.label I18n.t('user.Admin') %>:
+	  <%= f.check_box :admin %>
+        </div>
+      <% end %>
+      <div>
+	<%= f.label I18n.t('user.Password') %>:
+	<%= f.password_field :password, :size => 40 %>
+      </div>
+      <div>
+	<%= f.label I18n.t('user.Confirm') %>:
+	<%= f.password_field :password_confirmation, :size => 40 %>
+      </div>
+      <div>
+	<%= f.submit I18n.t('user.Submit'), :class => "submit" %>
+      </div>
+    </fieldset>
+  <% end %>
+<%= link_to I18n.t('user.Cancel'), :controller => 'reservation', :action => 'list' %>
+</div>
+

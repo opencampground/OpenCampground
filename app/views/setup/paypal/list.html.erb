@@ -1,0 +1,46 @@
+<%= render :partial => 'setup/shared/buttons' %>
+  <h2>
+    Remote Reservation Options:
+  </h2>
+  <label for="option_home">Return to URL when remote reservation finished:</label><b> <%=  @option.home %></b>
+  <% if @option.require_paypal? || @option.allow_paypal? %>
+    <h2>
+      PayPal Configuration:
+    </h2>
+    <table>
+      <tr>
+	<td>
+	  PayPal business name: <b><%=  @option.paypal_business %></b><br />
+	</td>
+      </tr>
+      <tr>
+	<td>
+	  PayPal certificate ID: <b><%=  @option.paypal_cert_id %></b><br />
+	</td>
+      </tr>
+      <tr>
+	<td>
+	  PayPal URL: <b><%=  @option.paypal_url %></b><br />
+	</td>
+      </tr>
+      <tr>
+	<td>
+	  PayPal currency code: <b><%=  @option.paypal_currency_code %></b><br />
+	</td>
+      </tr>
+      <tr>
+	<td>
+	  PayPal country code: <b><%=  @option.paypal_country %></b><br />
+	</td>
+      </tr>
+    </table>
+  <% end %>
+<table>
+<tr>
+<td>
+<%= button_to 'Edit', :action => :edit %>
+</td><td>
+<%= button_to 'Finished', :controller => 'setup/index' %>
+</td>
+</tr>
+</table>

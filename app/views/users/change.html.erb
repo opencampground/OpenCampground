@@ -1,0 +1,27 @@
+<div class="oc_form">
+
+<% form_for(@user) do |f| %>
+  <%= f.error_messages %>
+
+    <fieldset>
+      <legend><%= I18n.t('user.ChangeUser')%></legend>
+      <div>
+	<%= f.label I18n.t('user.Name') %>:&nbsp;
+	<span style="font-size: large"> <%= f.text_field :name %></span>
+      </div>
+      <% if @user.id != @user_login.id %>
+	<div>
+      <% else %>
+	<div style="display: none">
+      <% end %>
+	<%= f.label I18n.t('user.Admin') %>:
+	<%= f.check_box :admin %>
+      </div>
+      <div>
+	<%= f.submit I18n.t('user.Submit'), :class => "submit" %>
+      </div>
+    </fieldset>
+  <% end %>
+<%= link_to I18n.t('user.Cancel'), :controller => 'users', :action => 'index' %>
+</div>
+

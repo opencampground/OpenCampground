@@ -1,0 +1,11 @@
+<% form_for @blackout, :url => {:controller=>"setup/blackout", :action=>:update} do |f| %>
+  <%= f.error_messages %>
+
+<%= render :partial => 'form' %>
+  <p>
+    <%= f.submit 'Save' %>
+  </p>
+<% end %>
+
+<%= button_to 'Cancel', {:controller=>"setup/blackout", :action=>:index}, :method => :get %>
+<%= button_to 'Finished', :controller => 'setup/index' %>

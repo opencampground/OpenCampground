@@ -1,0 +1,5 @@
+<% form_tag report_sched_arrs_path do %>
+<b>Select first and last arrival dates for desired report</b></br>
+<%= render :partial => 'report/shared/dates' %>
+<p> <%= submit_tag "Generate Report", :disable_with => "Processing..." %></p>
+<% end %>

@@ -1,0 +1,23 @@
+<%= render :partial => 'setup/shared/buttons' %>
+<p>
+<%= button_to 'New recommender', :action => 'new' %>
+<p>
+<%= button_to 'Update Sort Order', :action => 'sort' %>
+<table border="1">
+  <tr>
+  <th>Name</th>
+  <th>Active</th>
+  </tr>
+  <% for recommender in @recommenders %>
+  <tr>
+    <td><%= recommender.name %></td>
+    <td><%= recommender.active %></td>
+    <td><%= link_to 'Edit', :action => 'edit', :id => recommender %></td>
+    <td><%= link_to 'Delete', { :action => 'destroy', :id => recommender },
+				:confirm => "Are you sure you want to delete #{recommender.name}?",
+				:method => 'post' %></td>
+  </tr>
+<% end %>
+</table>
+</p>
+<%= button_to 'Finished', :controller => 'setup/index' %>

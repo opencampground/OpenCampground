@@ -1,0 +1,9 @@
+<%= render :partial => 'setup/shared/buttons' %>
+<p>
+<%= button_to 'New Price', :action => :new  %>
+<b>Click on prices to edit</b>
+<div id="prices">
+  <%= render(:partial => 'rate', :object => @rates) %>
+</div>  
+</p>
+<%= button_to 'Finished', :controller => 'setup/index' %>

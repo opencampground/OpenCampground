@@ -1,0 +1,33 @@
+<%= render :partial => 'setup/shared/buttons' %>
+<%= error_messages_for 'options' %>
+<h2> Remote Reservation Options: </h2>
+<% form_for :option, @option, :url =>:setup_remote, :html => {:method => :put}  do |f| %>
+  <label for="option_home">Return to URL when remote reservation finished:</label> <%= f.text_field :home  %>
+  <% if Blackout.count > 0 %> 
+  <br />
+  <label for="option_phone_home">Phone number guest should call to resolve blackout issues:</label>
+     <%= text_field :option, :phone_home, {:size => '12', :autocomplete => 'off', :style => "font-family: monospace"}  %>
+  <% end %>
+  <div id="deposit_type">
+    Charge on making of remote reservation:
+	Full Amount
+	<%= radio_button "option", "deposit_type", Remote::Full_charge,
+	                            {:onchange => remote_function( :url => setup_remote_path(1),:method => :put,
+				    :with => "'deposit='+encodeURIComponent(value)")}%>
+	Percentage
+	<%= radio_button "option", "deposit_type", Remote::Percentage,
+	                            {:onchange => remote_function( :url => setup_remote_path(1),:method => :put,
+				    :with => "'deposit='+encodeURIComponent(value)")}%> 
+	Fixed
+	<%= radio_button "option", "deposit_type", Remote::Fixed_amount,
+	                            {:onchange => remote_function( :url => setup_remote_path(1),:method => :put,
+				    :with => "'deposit='+encodeURIComponent(value)")}%> 
+	Days
+	<%= radio_button "option", "deposit_type", Remote::Days,
+	                            {:onchange => remote_function( :url => setup_remote_path(1),:method => :put,
+				    :with => "'deposit='+encodeURIComponent(value)")}%> 
+  </div>
+  <%= render :partial => 'deposit' %>
+  <%= f.submit 'Save' %>
+<% end %>
+<%= button_to 'Finished', :controller => 'setup/index' %>

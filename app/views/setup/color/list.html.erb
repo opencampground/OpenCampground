@@ -1,0 +1,37 @@
+<%= error_messages_for 'color' %>
+<%= render :partial => 'setup/shared/buttons' %>
+<p>
+<table>
+  <tr>
+    <td>
+      <%= button_to 'Blue',   :action => :update_colors, :name => 'Blue' %>
+    </td><td>
+      <%= button_to 'Desert', :action => :update_colors, :name => 'Desert' %>
+    </td><td>
+      <%= button_to 'Forest', :action => :update_colors, :name => 'Forest' %>
+    </td><td>
+      <%= button_to 'Silver', :action => :update_colors, :name => 'Silver' %>
+    </td>
+  </tr>
+</table>
+
+</p>
+<p>
+<table border="1">
+  <tr>
+    <th>Color use</th>
+    <th>Color sample</th>
+    <th>Color name</th>
+  </tr>
+  
+  <% for color in @colors %>
+    <tr>
+      <td><%=h color.name %></td>
+      <td style="background: <%=color.value%>">&nbsp;</td>
+      <td><%=h color.value %></td>
+      <td><%= link_to 'Edit', :action => 'edit', :id => color %></td>
+    </tr>
+  <% end %>
+</table>
+</p>
+<%= button_to 'Finished', :controller => 'setup/index' %>

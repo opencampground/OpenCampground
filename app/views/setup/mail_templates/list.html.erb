@@ -1,0 +1,15 @@
+<%= render :partial => 'setup/shared/buttons' %>
+<p>
+<table border="1">
+  <tr>
+  <th>Name</th>
+  </tr>
+  <% for template in @mail_templates %>
+  <tr>
+    <td><%= template.name %></td>
+    <td><%= link_to 'Edit', :action => 'edit', :id => template %></td>
+  </tr>
+<% end %>
+</table>
+</p>
+<%= button_to 'Finished', :controller => 'setup/index' %>

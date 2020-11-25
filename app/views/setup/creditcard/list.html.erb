@@ -1,0 +1,23 @@
+<%= error_messages_for 'creditcard' %>
+<%= render :partial => 'setup/shared/buttons' %>
+<p>
+<%= button_to 'New creditcard', :action => 'new' %>
+<p>
+<%= button_to 'Update Sort Order', :action => 'sort' %>
+<table border="1">
+  <tr> <th>Name</th><th>Active?</th> </tr>
+  <% for creditcard in @creditcards %>
+    <tr>
+      <td><%=h creditcard.name %></td>
+      <td><%= creditcard.active %></td>
+    <td><%= link_to 'Edit', :action => 'edit', :id => creditcard %></td>
+    <% if creditcard.id > 1 %>
+      <td><%= link_to 'Delete', { :action => 'destroy', :id => creditcard },
+				:confirm => "Are you sure you want to delete #{creditcard.name}?",
+				:method => 'post' %></td>
+    <% end %>
+    </tr>
+  <% end %>
+</table>
+</p>
+<%= button_to 'Finished', :controller => 'setup/index' %>

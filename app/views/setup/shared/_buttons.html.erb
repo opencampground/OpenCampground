@@ -1,0 +1,225 @@
+<div style="border: solid">
+<table>
+  <tr>
+    <td>
+    <%= if params[:controller] == 'setup/sitetype'
+	  disable = true
+	else
+	  disable = false
+	end
+	button_to '  Sitetypes   ', setup_sitetype_index_path, :method => :get, :disabled => disable %>
+    </td>
+    
+    <td>
+    <%= if params[:controller] == 'setup/season'
+	  disable = true
+	else
+	  disable = false
+	end
+	button_to '   Seasons    ', {:controller => 'setup/season', :action => 'list'}, :disabled => disable %>
+    </td>
+    
+    <td>
+    <%= if params[:controller] == 'setup/price'
+	  disable = true
+	else
+	  disable = false
+	end
+	button_to '    Prices    ',     { :controller => 'setup/price', :action => 'list'}, :disabled => disable %>
+    </td>
+
+    <td>
+    <%= if params[:controller] == 'setup/space'
+	  disable = true
+	else
+	  disable = false
+	end
+	button_to '    Spaces    ', {:controller => 'setup/space', :action => 'list'}, :disabled => disable    %>
+    </td>
+
+    <td>
+    <%= if params[:controller] == 'setup/discount'
+	  disable = true
+	else
+	  disable = false
+	end
+	button_to '  Discounts   ',  setup_discount_index_path, :method => :get, :disabled => disable %>
+    </td>
+
+    <td>
+    <%= if params[:controller] == 'setup/rigtype'
+	  disable = true
+	else
+	  disable = false
+	end
+	button_to '   Rigtypes   ', {:controller => 'setup/rigtype', :action => 'list'}, :disabled => disable  %>
+    </td> 
+  </tr>
+  <tr>
+    
+    <td>
+    <%= if params[:controller] == 'setup/taxrate'
+	  disable = true
+	else
+	  disable = false
+	end
+	button_to '    Taxes     ', {:controller => 'setup/taxrate', :action => 'list'}, :disabled => disable     %>
+    </td>
+    
+  
+
+    <td>
+    <%= if params[:controller] == 'setup/extra'
+	  disable = true
+	else
+	  disable = false
+	end
+	button_to '    Extras    ', setup_extra_index_path, :method => :get, :disabled => disable     %>
+    </td>
+    
+    <td>
+    <%= if params[:controller] == 'setup/creditcard'
+	  disable = true
+	else
+	  disable = false
+	end
+	button_to ' Creditcards  ', {:controller => 'setup/creditcard', :action => 'list'}, :disabled => disable     %>
+    </td>
+    
+    <td>
+    <%= if params[:controller] == 'setup/option'
+	  disable = true
+	else
+	  disable = false
+	end
+	button_to "System\nOptions", {:controller => 'setup/option', :action => 'edit'}, :disabled => disable     %>
+    </td>
+
+    <% if @option.use_country == true %>
+	<td>
+	  <%= if params[:controller] == 'setup/country'
+		disable = true
+	      else
+		disable = false
+	      end
+	      button_to '  Countries   ', {:controller => 'setup/country', :action => 'list'}, :disabled => disable  %>
+	</td>
+    <% end %>
+
+    <% if @option.use_recommend == true %>
+	<td>
+	  <%= if params[:controller] == 'setup/recommender'
+		disable = true
+	      else
+		disable = false
+	      end
+	      button_to '  Recommenders   ', {:controller => 'setup/recommender', :action => 'list'}, :disabled => disable  %>
+	</td>
+    <% end %>
+
+    <td>
+    <%= if params[:controller] == 'setup/color'
+	  disable = true
+	else
+	  disable = false
+	end
+	button_to '    Colors    ', {:controller => 'setup/color', :action => 'list'}, :disabled => disable     %>
+    </td>
+
+    <td>
+    <%= if params[:controller] == 'setup/dynamic_strings'
+	  disable = true
+	else
+	  disable = false
+	end
+	button_to "Customize\nDisplay", {:controller => 'setup/dynamic_strings', :action => 'list'}, :disabled => disable %>
+    </td>
+    <td>
+    <%= if params[:controller] == 'setup/camper'
+	  disable = true
+	else
+	  disable = false
+	end
+	button_to "Create\nCampers", new_setup_camper_path, :disabled => disable %>
+    </td>
+  
+  </tr>
+  <tr>
+    <% if @option.use_map? || (@option.use_remote_reservations? && @option.use_remote_map?) %>
+      <td>
+	<%= if params[:controller] == 'setup/map'
+	      disable = true
+	    else
+	      disable = false
+	    end
+	    button_to "Map", {:controller => 'setup/map', :action => 'edit'}, :disabled => disable %>
+      </td>
+    <% end %>
+    <td>
+    <%= if params[:controller] == 'setup/security'
+	  disable = true
+	else
+	  disable = false
+	end
+	button_to "Security\nSettings", {:controller => 'setup/security', :action => 'list'}, :disabled => disable %>
+    </td>
+  
+    <% if @option.use_confirm_email? || @option.use_feedback? || @option.use_remote_res_email? || @option.use_remote_res_confirm? || @option.use_remote_res_reject? %>
+	<td>
+	  <%= if params[:controller] == 'setup/email'
+		disable = true
+	      else
+		disable = false
+	      end
+	      button_to '  Email   ', {:controller => 'setup/email', :action => 'list'}, :disabled => disable %>
+	</td>
+
+	<td>
+	  <%= if params[:controller] == 'setup/mail_templates'
+		disable = true
+	      else
+		disable = false
+	      end
+	      button_to ' Message  ', {:controller => 'setup/mail_templates', :action => 'list'}, :disabled => disable  %>
+	</td>
+    <% end %>
+
+    <% if @option.use_remote_reservations == true %>
+	<td>
+	  <%= if params[:controller] == 'setup/remotes'
+		disable = true
+	      else
+		disable = false
+	      end
+	      button_to "Remote\nReservations", edit_setup_remote_path(1), :method => :get, :disabled => disable %>
+	</td>
+
+
+	<td>
+	  <%= if params[:controller] == 'setup/prompt'
+	      disable = true
+	    else
+	      disable = false
+	    end
+	    button_to "Remote\nExplanations", setup_prompts_path, :method => :get, :disabled => disable %>
+	</td>
+	<td>
+	  <%= if params[:controller] == 'setup/blackout'
+	      disable = true
+	    else
+	      disable = false
+	    end
+	    button_to "Remote\nBlackouts", setup_blackout_index_path, :method => :get, :disabled => disable %>
+	</td>
+    <% end %>
+    <td>
+      <%= if params[:controller] == 'setup/integrations'
+	    disable = true
+	  else
+	    disable = false
+	  end
+	  button_to "Payment\nConfigurations", edit_setup_integration_path(:id => 1), :method => :get, :disabled => disable %>
+    </td>
+  </tr>
+</table>
+</div>
